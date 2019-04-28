@@ -15,5 +15,10 @@ Vec2& operator*=(float s );
 Vec2& operator/=(float s );
 };
 
+Vec2 operator+(Vec2 const& u ,Vec2 const& v);
+Vec2 operator-(Vec2 const& u ,Vec2 const& v);
+Vec2 operator*(Vec2 const& v ,float s);
+Vec2 operator/(Vec2 const& v ,float s);
+Vec2 operator*(float s ,Vec2 const& v);
 bool operator==(Vec2 const& lhs,  Vec2 const& rhs);
 # endif // VEC2_HPP

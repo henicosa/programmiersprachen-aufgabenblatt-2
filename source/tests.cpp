@@ -1,5 +1,6 @@
 #define CATCH_CONFIG_RUNNER
 #include <catch.hpp>
+#include <iostream>
 #include "vec2.hpp"
 
 TEST_CASE("vec2", "[vec2]" ) 
@@ -37,12 +38,41 @@ REQUIRE ((v1*=s)== sol);
 v1 = Vec2{5,3}; 
 s = 0;
 sol = Vec2{0,0};
-//REQUIRE ((v1/=s)== sol); 
+REQUIRE ((v1/=s)== sol); 
 
 v1 = Vec2{5,3}; 
-s = 5;
-sol = Vec2{1,3/5};
-//REQUIRE ((v1/=s)== sol); 
+s = 5.0f;
+sol = Vec2{1,3.0f/5.0f};
+REQUIRE ((v1/=s)== sol); 
+}
+
+TEST_CASE("op", "[op]" ) 
+{
+Vec2 v1{5,3}; 
+Vec2 v2{1,-3};
+Vec2 sol{6,0};
+REQUIRE ((v1+v2)== sol); 
+
+v1 = Vec2{5,3}; 
+v2 = Vec2{-1,3};
+sol = Vec2{6,0};
+REQUIRE ((v1-v2)== sol); 
+
+v1 = Vec2{5,3}; 
+double s = 1.5;
+sol = Vec2{7.5,4.5};
+REQUIRE ((v1*s)== sol); 
+REQUIRE ((s*v1)== sol); 
+
+v1 = Vec2{5,3}; 
+s = 0;
+sol = Vec2{0,0};
+REQUIRE ((v1/s)== sol); 
+
+v1 = Vec2{5,3}; 
+s = 5.0f;
+sol = Vec2{1,3/5.0f};
+REQUIRE ((v1/s) == sol); 
 }
 
 int main(int argc, char *argv[])

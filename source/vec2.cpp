@@ -1,6 +1,6 @@
 #include "vec2.hpp"
 #include <iostream>
-//#include <limits>
+#include <catch.hpp>
 /*
 bool Vec2::operator==(Vec2 const& v2) {
     if (x == v2.x and y == v2.y) {
@@ -27,12 +27,14 @@ Vec2& Vec2::operator*=(float s) {
 Vec2& Vec2::operator/=(float s) {
     if(s == 0) {
         std::cout << "Division by 0 not defined.";
-        Vec2 v{0,0};
-        return v;
-    }
-    x = x/s;
-    y = y/s;
+        x = 0;
+        y = 0;
+        return *this;
+    } else {
+    x /= s;
+    y /= s;
     return *this;
+    }
 }
 
 
@@ -43,10 +45,36 @@ Vec2& Vec2::operator-=(Vec2 const& v) {
 }
 
 bool operator==(Vec2 const& lhs,  Vec2 const& rhs) {
-    //if (Approx(lhs.x) == Approx(rhs.x) and Approx(lhs.y) == Approx(rhs.y)) {
-    if (lhs.x == rhs.x and lhs.y == rhs.y) {
+    if ((lhs.x == Approx(rhs.x)) and (lhs.y == Approx(rhs.y))) {
         return true;
     } else {
         return false;
     }
+}
+
+Vec2 operator+( Vec2 const& u , Vec2 const& v ) {
+    Vec2 w = u;
+    return w += v;
+}
+Vec2 operator-( Vec2 const& u , Vec2 const& v ) {
+    Vec2 w = u;
+    return w -= v;
+}
+Vec2 operator*( Vec2 const& v , float s ) {
+    Vec2 w = v;
+    return w *= s;
+}
+Vec2 operator/( Vec2 const& v , float s ) {
+    if(s == 0) {
+        std::cout << "Division by 0 not defined.";
+        Vec2 v2{0,0};
+        return v2;
+    } else {
+    Vec2 w = v;
+    return w /= s;
+    }
+}
+Vec2 operator*( float s , Vec2 const& v ) {
+    Vec2 w = v;
+    return w *= s;
 }
