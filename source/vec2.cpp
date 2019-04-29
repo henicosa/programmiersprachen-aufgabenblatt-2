@@ -52,6 +52,11 @@ bool operator==(Vec2 const& lhs,  Vec2 const& rhs) {
     }
 }
 
+std::ostream& operator<<(std::ostream& c, Vec2 const& v) {
+    c << "[" << v.x << ", " << v.y << "]";
+    return c;
+}
+
 Vec2 operator+( Vec2 const& u , Vec2 const& v ) {
     Vec2 w = u;
     return w += v;
