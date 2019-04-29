@@ -3,6 +3,7 @@
 #include <iostream>
 #include "vec2.hpp"
 #include "mat2.hpp"
+#include "color.hpp"
 
 TEST_CASE("vec2", "[vec2]" ) 
 {
@@ -104,9 +105,23 @@ REQUIRE((me*v) == v);
 REQUIRE((m2*v) == vsol);
 
 double phi = 0.5;
-Mat2 rm{cos(phi), -sin(phi), sin(phi), cos(phi)};
+Mat2 rm{float(cos(phi)), float(-sin(phi)), float(sin(phi)), float(cos(phi))};
 REQUIRE(make_rotation_mat2(phi)== rm);
-} 
+}
+
+//  Exercize 2.7
+
+TEST_CASE("color", "[color]" ) 
+{
+Color c{0.4,1,54};
+REQUIRE(c.r == 0.4);
+REQUIRE(c.g == 1);
+REQUIRE(c.b == 54);
+Color c2;
+REQUIRE(c2.r == 0.5);
+REQUIRE(c2.g == 0.5);
+REQUIRE(c2.b == 0.5);
+}
 
 int main(int argc, char *argv[])
 {
