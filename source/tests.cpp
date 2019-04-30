@@ -86,7 +86,7 @@ REQUIRE ((v1/s) == sol);
 TEST_CASE("Mat2", "[Mat2]" ) 
 {
 Mat2 m1;
-std::cout << m1;
+std::cout << m1 << "\n";
 Mat2 m2{1,-3,4,0.5};
 REQUIRE((m1*=m2)== m2); 
 
@@ -129,16 +129,17 @@ REQUIRE(c2.b == 0.5);
 
 TEST_CASE("circumference", "[circumference]" ) 
 {
+  Color grey;
   Vec2 n;
   Vec2 min{-1,-2};
-  Circle c1 = Circle(min, 0.5);
+  Circle c1 = Circle(min, 0.5, grey);
   REQUIRE (c1.circumference() == Approx(M_PI)); 
-  Circle c2 = Circle(n, 1);
+  Circle c2 = Circle(n, 1, grey);
   REQUIRE (c2.circumference() == Approx(2*M_PI)); 
   Vec2 max{2,1};
-  Rectangle r1 = Rectangle(min, max);
+  Rectangle r1 = Rectangle(min, max, grey);
   REQUIRE (r1.circumference() == Approx(12)); 
-  Rectangle r2 = Rectangle(min, n);
+  Rectangle r2 = Rectangle(min, n, grey);
   REQUIRE (r2.circumference() == Approx(6)); 
 }
 

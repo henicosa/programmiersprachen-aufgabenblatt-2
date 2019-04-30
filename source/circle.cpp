@@ -1,14 +1,15 @@
 # include "circle.hpp"
 # include  <catch.hpp>
+# include "color.hpp"
 
 Circle::Circle() {
-    mid_ = Vec2{0,0};
     r_ = 1;
 };
 
-Circle::Circle(Vec2 const& mid, float r) {
+Circle::Circle(Vec2 const& mid, float r, Color const& c) {
     mid_ = mid;
     r_ = r;
+    c_ = c;
 };
 
 float const Circle::circumference() {
