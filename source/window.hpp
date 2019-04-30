@@ -4,6 +4,7 @@
 #include <utility>
 #include <array>
 #include <string>
+# include "window.hpp"
 
 struct NVGcontext;
 struct GLFWwindow;

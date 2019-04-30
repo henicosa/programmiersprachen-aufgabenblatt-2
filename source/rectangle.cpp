@@ -12,6 +12,15 @@ Rectangle::Rectangle(Vec2 const& min, Vec2 const& max, Color const& c) {
     c_ = c;
 };
 
+void const Rectangle::draw(Window& w) {
+    Vec2 p_lo{min_.x,max_.y};
+    Vec2 p_ru{max_.x,min_.y};
+    w.draw_line(min_.x,min_.y,p_lo.x,p_lo.y,c_.r,c_.g,c_.b);
+    w.draw_line(min_.x,min_.y,p_ru.x,p_ru.y,c_.r,c_.g,c_.b);
+    w.draw_line(max_.x,max_.y,p_lo.x,p_lo.y,c_.r,c_.g,c_.b);
+    w.draw_line(max_.x,max_.y,p_ru.x,p_ru.y,c_.r,c_.g,c_.b);
+};
+
 float const Rectangle::circumference() {
     return 2*abs(max_.x - min_.x) + 2*abs(max_.y - min_.y);
 };

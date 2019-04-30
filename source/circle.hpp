@@ -4,6 +4,7 @@
 # include "vec2.hpp"
 # include "mat2.hpp"
 # include "color.hpp"
+# include "window.hpp"
 
 class Circle
 {
@@ -11,6 +12,7 @@ public:
     Circle();
     Circle(Vec2 const& mid, float r, Color const& c);
     float const circumference();
+    void const draw(Window& w);
 private:
     Vec2 mid_;
     float r_;

@@ -2,7 +2,10 @@
 #include <GLFW/glfw3.h>
 #include <utility>
 #include <cmath>
-
+#include "circle.hpp"
+#include "color.hpp"
+#include "rectangle.hpp"
+#include "vec2.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -25,6 +28,17 @@ int main(int argc, char* argv[])
 
     float x3 = 400.f + 380.f * std::sin(t-10.f);
     float y3 = 400.f + 380.f * std::cos(t-10.f);
+
+    Vec2 n{300,300};
+    Color c1{0.8,0.4,0.3};
+    Color c2{0.3,0.4,0.8};
+    Circle cir{n, 40, c1};
+    Vec2 min{400,400};
+    Vec2 max{500,450};
+    Rectangle rect{min, max, c2};
+    
+    rect.draw(win);
+    cir.draw(win);
 
     win.draw_point(x1, y1, 1.0f, 0.0f, 0.0f);
     win.draw_point(x2, y2, 0.0f, 1.0f, 0.0f);
