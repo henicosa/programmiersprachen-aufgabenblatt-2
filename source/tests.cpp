@@ -4,6 +4,8 @@
 #include "vec2.hpp"
 #include "mat2.hpp"
 #include "color.hpp"
+#include "rectangle.hpp"
+#include "circle.hpp"
 
 TEST_CASE("vec2", "[vec2]" ) 
 {
@@ -121,6 +123,23 @@ Color c2;
 REQUIRE(c2.r == 0.5);
 REQUIRE(c2.g == 0.5);
 REQUIRE(c2.b == 0.5);
+}
+
+//  Exercize 2.9
+
+TEST_CASE("circumference", "[circumference]" ) 
+{
+  Vec2 n;
+  Vec2 min{-1,-2};
+  Circle c1 = Circle(min, 0.5);
+  REQUIRE (c1.circumference() == Approx(M_PI)); 
+  Circle c2 = Circle(n, 1);
+  REQUIRE (c2.circumference() == Approx(2*M_PI)); 
+  Vec2 max{2,1};
+  Rectangle r1 = Rectangle(min, max);
+  REQUIRE (r1.circumference() == Approx(12)); 
+  Rectangle r2 = Rectangle(min, n);
+  REQUIRE (r2.circumference() == Approx(6)); 
 }
 
 int main(int argc, char *argv[])

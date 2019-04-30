@@ -9,6 +9,7 @@ class Circle
 public:
     Circle();
     Circle(Vec2 const& mid, float r);
+    float const circumference();
 private:
     Vec2 mid_;
     float r_;    
