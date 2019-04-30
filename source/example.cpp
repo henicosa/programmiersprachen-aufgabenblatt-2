@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
     Rectangle rect{min, max, c2};
     
     rect.draw(win);
-    cir.draw(win);
+    cir.draw(win, true);
 
     win.draw_point(x1, y1, 1.0f, 0.0f, 0.0f);
     win.draw_point(x2, y2, 0.0f, 1.0f, 0.0f);

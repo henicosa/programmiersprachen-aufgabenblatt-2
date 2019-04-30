@@ -12,11 +12,12 @@ public:
     Circle();
     Circle(Vec2 const& mid, float r, Color const& c);
     float const circumference();
-    void const draw(Window& w);
+    void const draw(Window& w, bool highlight = false);
 private:
-    Vec2 mid_;
-    float r_;
-    Color c_;    
+    Vec2 mid_;//vector to the circles middle
+    float r_; //radius
+    Color c_; //color  
+    Color higlight_color_; 
 };
 
 # endif //circle.hpp
