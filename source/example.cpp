@@ -36,15 +36,26 @@ int main(int argc, char* argv[])
     Vec2 min{400,400};
     Vec2 max{500,450};
     Rectangle rect{min, max, c2};
-    
+
     rect.draw(win);
-    cir.draw(win, true);
+    
 
     win.draw_point(x1, y1, 1.0f, 0.0f, 0.0f);
     win.draw_point(x2, y2, 0.0f, 1.0f, 0.0f);
     win.draw_point(x3, y3, 0.0f, 0.0f, 1.0f);
 
     auto mouse_position = win.mouse_position();
+    Vec2 mouse_vector{mouse_position.first,mouse_position.second};
+    if(cir.is_inside(mouse_vector)) {
+      cir.draw(win, true);
+    } else {
+      cir.draw(win);
+    }
+    if(rect.is_inside(mouse_vector)) {
+      rect.draw(win, true);
+    } else {
+      rect.draw(win);
+    }
     if (left_pressed) {
       win.draw_line(30.0f, 30.0f, // FROM pixel idx with coords (x=30, y=30)
                     mouse_position.first, mouse_position.second, // TO mouse position in pixel coords

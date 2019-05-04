@@ -138,10 +138,15 @@ TEST_CASE("circumference", "[circumference]" )
   Circle c2 = Circle(n, 1, grey);
   REQUIRE (c2.circumference() == Approx(2*M_PI)); 
   Vec2 max{2,1};
+  REQUIRE(c1.is_inside(min));
+  REQUIRE(!c1.is_inside(max));
   Rectangle r1 = Rectangle(min, max, grey);
   REQUIRE (r1.circumference() == Approx(12)); 
   Rectangle r2 = Rectangle(min, n, grey);
-  REQUIRE (r2.circumference() == Approx(6)); 
+  REQUIRE (r2.circumference() == Approx(6));
+  REQUIRE (r2.is_inside(min));
+  min*=(4);
+  REQUIRE (!r2.is_inside(min));   
 }
 
 int main(int argc, char *argv[])

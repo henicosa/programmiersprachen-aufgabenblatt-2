@@ -12,7 +12,7 @@ struct GLFWwindow;
 class Window
 {
 public:
-  Window(std::pair<int, int> const& windowsize = std::make_pair(640, 480));
+  Window(std::pair<int, int> const& windowsize = std::make_pair(640, 480), std::string title = "Fensterchen");
   ~Window();
 
   // Draw a line starting at (startX,startY) to (endX, endY) with color (r,g,b)

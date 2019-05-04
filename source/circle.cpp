@@ -18,8 +18,7 @@ float const Circle::circumference() {
     return 2 * M_PI * r_; 
 }
 
-void const Circle::draw(Window& w, bool highlight) {
-    int divisor = 21;
+void const Circle::draw(Window& w, bool highlight, int divisor) {
     Color c;
     double phi = 2*M_PI/double(divisor);
     if (highlight) {
@@ -34,5 +33,14 @@ void const Circle::draw(Window& w, bool highlight) {
         ring_point = ring_point * phi_rotation;
         Vec2 last_point = mid_ + ring_point;
         w.draw_line(first_point.x,first_point.y,last_point.x,last_point.y,c.r,c.g,c.b);
+    }
+}
+
+bool Circle::is_inside(const Vec2& point){
+    Vec2 mid_to_point = mid_ - point;
+    if(mid_to_point.x*mid_to_point.x + mid_to_point.y*mid_to_point.y <= r_*r_) {
+        return true;
+    } else {
+        return false;
     }
 }

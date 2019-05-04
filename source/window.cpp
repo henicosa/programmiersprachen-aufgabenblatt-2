@@ -28,12 +28,12 @@ void errorcb(int error, const char* desc)
 }
 }
 
-Window::Window(std::pair<int, int> const& windowsize)
+Window::Window(std::pair<int, int> const& windowsize, std::string title)
   : m_window{nullptr}
   , m_nvgContext{nullptr}
   , m_windowSize{windowsize}
   , m_framebufferSize{windowsize}
-  , m_title("Fensterchen")
+  , m_title(title)
   , m_font_normal{0}
 {
   if (!glfwInit()) {
