@@ -6,10 +6,37 @@
 #include "color.hpp"
 #include "rectangle.hpp"
 #include "vec2.hpp"
+#include <random>
+#include <vector>
+#include <array>
 
 int main(int argc, char* argv[])
 {
   Window win{std::make_pair(800,800)};
+
+  std::vector<Circle> circles(10);
+  std::array<Rectangle, 10> rects;
+  std::default_random_engine generator;
+  std::uniform_int_distribution<int> random_color(0,255);
+  std::uniform_int_distribution<int> random_size(50,750);
+  std::uniform_int_distribution<int> random_radius(10,100);
+
+  for (int signed i = 0; i < circles.size(); ++i) {
+    Color col{random_color(generator),random_color(generator),random_color(generator)};
+    Circle cir{Vec2{random_size(generator),random_size(generator)}, float(random_radius(generator)), col};
+    circles[i] = cir;
+  }
+
+  for (int signed i = 0; i < rects.size(); ++i) {
+    Color col{random_color(generator),random_color(generator),random_color(generator)};
+    int x1 = random_size(generator);
+    int x2 = random_size(generator);
+    int y1 = random_size(generator);
+    int y2 = random_size(generator);
+    Vec2 min = {(x1<x2)?x1:x2, (y1<y2)?y1:y2};
+    Vec2 max = {(x1>x2)?x1:x2, (y1>y2)?y1:y2};
+    rects[i] = Rectangle{min, max, col};
+  }
 
   while (!win.should_close()) {
     if (win.get_key(GLFW_KEY_ESCAPE) == GLFW_PRESS) {
@@ -36,9 +63,9 @@ int main(int argc, char* argv[])
     Vec2 min{400,400};
     Vec2 max{500,450};
     Rectangle rect{min, max, c2};
-
-    rect.draw(win);
     
+
+
 
     win.draw_point(x1, y1, 1.0f, 0.0f, 0.0f);
     win.draw_point(x2, y2, 0.0f, 1.0f, 0.0f);
@@ -46,6 +73,15 @@ int main(int argc, char* argv[])
 
     auto mouse_position = win.mouse_position();
     Vec2 mouse_vector{mouse_position.first,mouse_position.second};
+
+    for (int signed i = 0; i < circles.size(); ++i) {
+      if(circles[i].is_inside(mouse_vector)) {
+        circles[i].draw(win, true);
+      } else {
+        circles[i].draw(win);
+      }
+    }
+
     if(cir.is_inside(mouse_vector)) {
       cir.draw(win, true);
     } else {
@@ -55,6 +91,14 @@ int main(int argc, char* argv[])
       rect.draw(win, true);
     } else {
       rect.draw(win);
+    }
+
+    for (int signed i = 0; i < rects.size(); ++i) {
+      if(rects[i].is_inside(mouse_vector)) {
+        rects[i].draw(win, true);
+      } else {
+        rects[i].draw(win);
+      }
     }
     if (left_pressed) {
       win.draw_line(30.0f, 30.0f, // FROM pixel idx with coords (x=30, y=30)
