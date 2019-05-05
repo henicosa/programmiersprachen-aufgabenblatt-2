@@ -1,11 +1,16 @@
+// Include von lokalem / projektinternem File
 #include "window.hpp"
-#include <GLFW/glfw3.h>
-#include <utility>
-#include <cmath>
 #include "circle.hpp"
 #include "color.hpp"
 #include "rectangle.hpp"
 #include "vec2.hpp"
+
+// Include von File aus einer Fremdbibliothek
+#include <GLFW/glfw3.h>
+
+// Standard - Headers
+#include <utility>
+#include <cmath>
 #include <random>
 #include <vector>
 #include <array>
@@ -14,6 +19,14 @@ int main(int argc, char* argv[])
 {
   Window win{std::make_pair(800,800)};
 
+  Vec2 n{300,300};
+  Color c1{0.8,0.4,0.3};
+  Color c2{0.3,0.4,0.8};
+  Circle cir{n, 40, c1};
+  Vec2 min{400,400};
+  Vec2 max{500,450};
+  Rectangle rect{min, max, c2};
+
   std::vector<Circle> circles(10);
   std::array<Rectangle, 10> rects;
   std::default_random_engine generator;
@@ -21,20 +34,20 @@ int main(int argc, char* argv[])
   std::uniform_int_distribution<int> random_size(50,750);
   std::uniform_int_distribution<int> random_radius(10,100);
 
-  for (int signed i = 0; i < circles.size(); ++i) {
-    Color col{random_color(generator),random_color(generator),random_color(generator)};
-    Circle cir{Vec2{random_size(generator),random_size(generator)}, float(random_radius(generator)), col};
+  for (int unsigned i = 0; i < circles.size(); ++i) {
+    Color col{random_color(generator)/255.0f,random_color(generator)/255.0f,random_color(generator)/255.0f};
+    Circle cir{Vec2{double(random_size(generator)),double(random_size(generator))}, float(random_radius(generator)), col};
     circles[i] = cir;
   }
 
-  for (int signed i = 0; i < rects.size(); ++i) {
-    Color col{random_color(generator),random_color(generator),random_color(generator)};
+  for (int unsigned i = 0; i < rects.size(); ++i) {
+    Color col{random_color(generator)/255.0f,random_color(generator)/255.0f,random_color(generator)/255.0f};
     int x1 = random_size(generator);
     int x2 = random_size(generator);
     int y1 = random_size(generator);
     int y2 = random_size(generator);
-    Vec2 min = {(x1<x2)?x1:x2, (y1<y2)?y1:y2};
-    Vec2 max = {(x1>x2)?x1:x2, (y1>y2)?y1:y2};
+    Vec2 min = {double((x1<x2)?x1:x2), double((y1<y2)?y1:y2)};
+    Vec2 max = {double((x1>x2)?x1:x2), double((y1>y2)?y1:y2)};
     rects[i] = Rectangle{min, max, col};
   }
 
@@ -56,17 +69,6 @@ int main(int argc, char* argv[])
     float x3 = 400.f + 380.f * std::sin(t-10.f);
     float y3 = 400.f + 380.f * std::cos(t-10.f);
 
-    Vec2 n{300,300};
-    Color c1{0.8,0.4,0.3};
-    Color c2{0.3,0.4,0.8};
-    Circle cir{n, 40, c1};
-    Vec2 min{400,400};
-    Vec2 max{500,450};
-    Rectangle rect{min, max, c2};
-    
-
-
-
     win.draw_point(x1, y1, 1.0f, 0.0f, 0.0f);
     win.draw_point(x2, y2, 0.0f, 1.0f, 0.0f);
     win.draw_point(x3, y3, 0.0f, 0.0f, 1.0f);
@@ -74,7 +76,7 @@ int main(int argc, char* argv[])
     auto mouse_position = win.mouse_position();
     Vec2 mouse_vector{mouse_position.first,mouse_position.second};
 
-    for (int signed i = 0; i < circles.size(); ++i) {
+    for (int unsigned i = 0; i < circles.size(); ++i) {
       if(circles[i].is_inside(mouse_vector)) {
         circles[i].draw(win, true);
       } else {
@@ -93,7 +95,7 @@ int main(int argc, char* argv[])
       rect.draw(win);
     }
 
-    for (int signed i = 0; i < rects.size(); ++i) {
+    for (int unsigned i = 0; i < rects.size(); ++i) {
       if(rects[i].is_inside(mouse_vector)) {
         rects[i].draw(win, true);
       } else {

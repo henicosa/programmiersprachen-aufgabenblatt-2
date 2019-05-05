@@ -1,6 +1,4 @@
 #include "mat2.hpp"
-#include "vec2.hpp"
-#include <catch.hpp>
 
 Mat2& Mat2::operator*=(Mat2 const& m) {
     float tmp_00 = e_00*m.e_00 + e_10*m.e_01;

@@ -1,12 +1,18 @@
+// Include von lokalem / projektinternem File
 #include "window.hpp"
-#include <GLFW/glfw3.h>
-#include <utility>
-#include <cmath>
 #include "circle.hpp"
 #include "color.hpp"
 #include "rectangle.hpp"
 #include "vec2.hpp"
 #include "mat2.hpp"
+
+// Include von File aus einer Fremdbibliothek
+#include <GLFW/glfw3.h>
+
+// Standard - Headers
+#include <utility>
+#include <cmath>
+
 
 int main(int argc, char* argv[])
 {

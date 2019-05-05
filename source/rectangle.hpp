@@ -1,6 +1,7 @@
 # ifndef RECTANGLE_HPP
 # define RECTANGLE_HPP
 
+// Include von lokalem / projektinternem File
 # include "vec2.hpp"
 # include "mat2.hpp"
 # include "color.hpp"

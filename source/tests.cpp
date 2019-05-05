@@ -1,12 +1,17 @@
 #define CATCH_CONFIG_RUNNER
-#include <catch.hpp>
-#include <iostream>
-#include "vec2.hpp"
-#include "mat2.hpp"
-#include "color.hpp"
-#include "rectangle.hpp"
-#include "circle.hpp"
 
+// Include von lokalem / projektinternem File
+# include "vec2.hpp"
+# include "mat2.hpp"
+# include "color.hpp"
+# include "rectangle.hpp"
+# include "circle.hpp"
+
+// Include von File aus einer Fremdbibliothek
+# include <catch.hpp>
+
+// Standard - Headers
+# include <iostream>
 
 TEST_CASE("vec2", "[vec2]" ) 
 {
