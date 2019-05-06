@@ -4,7 +4,6 @@
 // Mat2 definition
 // Include von lokalem / projektinternem File
 # include "vec2.hpp"
-# include "vec2.hpp"
 
 // Include von File aus einer Fremdbibliothek
 # include <catch.hpp>

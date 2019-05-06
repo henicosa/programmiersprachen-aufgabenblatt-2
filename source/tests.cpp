@@ -112,7 +112,7 @@ Vec2 vsol{9, 11};
 REQUIRE((me*v) == v);
 REQUIRE((m2*v) == vsol);
 
-double phi = 0.5;
+double phi = 0.5; //Referenzwerte benutzen
 Mat2 rm{float(cos(phi)), float(-sin(phi)), float(sin(phi)), float(cos(phi))};
 REQUIRE(make_rotation_mat2(phi)== rm);
 }

@@ -4,10 +4,7 @@ Circle::Circle() {
   r_ = 1;
 }
 
-Circle::Circle(Vec2 const& mid, float r, Color const& c) {
-  mid_ = mid;
-  r_ = r;
-  c_ = c;
+Circle::Circle(Vec2 const& mid, float r, Color const& c) : mid_(mid), r_(r), c_(c) {
   higlight_color_ = Color{1-c.r,1-c.g,1-c.b};
 }
 
@@ -15,7 +12,7 @@ float const Circle::circumference() {
   return 2 * M_PI * r_; 
 }
 
-void const Circle::draw(Window& w, bool highlight, int divisor) {
+void Circle::draw(Window& w, bool highlight, int divisor) const {
   Color c;
   double phi = 2*M_PI/double(divisor);
   if (highlight) {
@@ -33,7 +30,7 @@ void const Circle::draw(Window& w, bool highlight, int divisor) {
   }
 }
 
-bool Circle::is_inside(const Vec2& point){
+bool Circle::is_inside(Vec2 const& point){
   Vec2 mid_to_point = mid_ - point;
   if(mid_to_point.x*mid_to_point.x + mid_to_point.y*mid_to_point.y <= r_*r_) {
     return true;

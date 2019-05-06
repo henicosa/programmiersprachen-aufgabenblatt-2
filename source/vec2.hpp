@@ -12,8 +12,8 @@ struct Vec2
 {
 /* TODO add member variables with
 default member initialisation*/
-double x = 0.0f;
-double y = 0.0f;
+double x = 0.0;
+double y = 0.0;
 
 //bool operator==(Vec2 const& v );
 Vec2& operator+=(Vec2 const& v );

@@ -18,7 +18,7 @@ public:
   Circle();
   Circle(Vec2 const& mid, float r, Color const& c);
   float const circumference();
-  void const draw(Window& w, bool highlight = false, int divisor = 21);
+  void draw(Window& w, bool highlight = false, int divisor = 21) const;
   bool is_inside(const Vec2& point);
 private:
   Vec2 mid_;//vector to the circles middle
